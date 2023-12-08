@@ -7,6 +7,7 @@ const userRoute = require("./routes/user");
 const orderRoute = require("./routes/Order");
 const cartRoute = require("./routes/Cart");
 const productRoute = require("./routes/Product");
+const favRoute = require("./routes/Fav");
 const cors = require("cors");
 dotenv.config();
 mongoose
@@ -24,6 +25,7 @@ mongoose
   app.use("/api/orders", orderRoute);
   app.use("/api/carts", cartRoute);
   app.use("/api/products", productRoute);
+  app.use("/api/favs", favRoute);
 
 
 
