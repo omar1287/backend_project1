@@ -16,7 +16,7 @@ router.get('/', async (req, res) => {
 
 
 
-router.post("/", async (req, res) => {
+router.post("/" ,async (req, res) => {
   const fav = new Fav(req.body);
 
   try {

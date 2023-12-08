@@ -58,7 +58,7 @@ router.put("/:id", async (req, res) => {
 
 
 // Get products in a specific category
-router.get('/:category', async (req, res) => {
+router.get('/products/:category', async (req, res) => {
   const category = req.params.category;
   try {
     const filteredProducts = await Product.find({ category: category });
