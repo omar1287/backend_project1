@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const Product = require('../routes/model/Product.model');
-// const Category = require('../routes/model/Category');
+const Category = require('../routes/model/Category');
 
 const router = require("express").Router();
 
@@ -18,6 +18,10 @@ router.get('/', async (req, res) => {
 router.post('/add__product', async (req, res) => {
   try {
     // get user object from req body
+    const category = Category.findById(req.body.category);
+	  if (!category){
+		  return res.status(400).json({message : 'Invalid category ID'})
+	  }
     let productParam = req.body;
     // validate product object
     if(await Product.findOne({name:productParam.name})){
@@ -51,6 +55,10 @@ router.put("/:id", async (req, res) => {
   try {
     const { id } = req.params;
     const body = req.body;
+    const category = Category.findById(req.body.category);
+  if (!category){
+	  return res.status(400).json({message : 'Invalid category ID'})
+  }
     const product = await Product.findByIdAndUpdate(id,body, {new : true});
 	return res.json(product)
 

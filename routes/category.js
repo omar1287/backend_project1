@@ -16,9 +16,7 @@ router.get('/', async (req, res) => {
 
 router.post('/add', async (req, res) => {
   try {
-    // get user object from req body
     let categoryParam = req.body;
-    // validate product object
     if(await Category.findOne({name:categoryParam.name})){
     	return res.status(400).send("category already exist");
     }
@@ -73,13 +71,13 @@ router.get('/:category', async (req, res) => {
 router.delete("/:id", async (req, res) => {
   try {
     const { id } = req.params;
-    const product = await Product.findByIdAndDelete(id);
-    if (!product) {
-      res.status(400).send(`cannot find product with id ${id}`);
+    const category = await Category.findByIdAndDelete(id);
+    if (!category) {
+      res.status(400).send(`cannot find category with id ${id}`);
       return;
     }
 
-    res.send(product);
+    res.send(category);
   } catch (error) {
     res.status(500).send({ message: error.message });
   }
