@@ -9,7 +9,7 @@ const productSchema = new Schema(
         price: { type: String, required: true },
         stock: { type: Number, required: true },
 	brand: {type: String},
-        categories: { type: Array, required: true },
+    category: {type: mongoose.Schema.Types.ObjectId ,required : true },
     },
     {
         timestamps: true,

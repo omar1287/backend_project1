@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Product = require('../routes/model/Product.model');
+// const Category = require('../routes/model/Category');
 
 const router = require("express").Router();
 
@@ -96,7 +97,7 @@ router.get('/Search/', async (req, res) => {
 router.get('/category/:category', async (req, res) => {
   const category = req.params.category;
   try {
-    const filteredProducts = await Product.find({ categories: category });
+    const filteredProducts = await Product.find({ category: category });
     res.json(filteredProducts);
   } catch (error) {
     res.status(500).json({ error: error.message });
